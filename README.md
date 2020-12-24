@@ -2,8 +2,6 @@
 
 Arduino project counting time from the last power line fail.
 
-![Image](https://raw.githubusercontent.com/bigjohnson/bigjohnson.github.io/master/powerlinecheck/powerlinecheck.jpg)
-
 ##Hardware
 
 * Arduino UNO or atmega328 compatible
@@ -12,3 +10,6 @@ Arduino project counting time from the last power line fail.
 ## Software
 
 * LiquidCrystal library
+
+
+![Image](https://raw.githubusercontent.com/bigjohnson/bigjohnson.github.io/master/powerlinecheck/powerlinecheck.jpg)

@@ -44,12 +44,11 @@ const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 unsigned long oldmillis;
 unsigned long newmillis;
+unsigned long prossimo;
 unsigned char secondi = 0;
 unsigned char minuti = 0;
 unsigned char ore = 0;
 unsigned long giorni = 0;
-unsigned int limite = SECONDO;
-bool scatto = false;
 
 void setup() {
   // set up the LCD's number of columns and rows:
@@ -70,18 +69,13 @@ void loop() {
   //if ( millis() % 1000 == 0 ) {
   if ( giorni < 9999999 || ore < 23 || minuti < 59 || secondi < 59 ) {
     newmillis = millis();
-    if (newmillis < oldmillis && scatto == false) {
+    if (( newmillis >= prossimo ) {
+      prossimo = oldmillis + SECONDO
+      if ( prossimo =< oldmillis ) {
+        prossimo = SECONDO;
+      }
       oldmillis = newmillis;
-      limite = 295;
-      scatto = true;
-    }
-    //if ( millis() % 1000 == 0 ) {
-    if ((oldmillis + limite) <= newmillis) {
-      //    oldmillis = newmillis;
-      oldmillis = oldmillis + 1000;
       secondi++;
-      scatto = false;
-      limite = SECONDO;
       if (secondi == 60) {
         secondi = 0 ;
         minuti++;

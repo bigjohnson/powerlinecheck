@@ -42,9 +42,9 @@
 // with the arduino pin number it is connected to
 const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
-unsigned long oldmillis;
+//unsigned long oldmillis;
 unsigned long newmillis;
-unsigned long prossimo;
+unsigned long prossimo = SECONDO;
 unsigned char secondi = 0;
 unsigned char minuti = 0;
 unsigned char ore = 0;
@@ -56,10 +56,11 @@ void setup() {
   // Print a message to the LCD.
   lcd.print("      d  h  m  s");
   //         9999999
-  oldmillis = millis();
+  //oldmillis = millis();
 }
 
 void loop() {
+  unsigned long next;
   // set the cursor to column 0, line 1
   // (note: line 1 is the second row, since counting begins with 0):
   //lcd.setCursor(13, 1);
@@ -70,11 +71,13 @@ void loop() {
   if ( giorni < 9999999 || ore < 23 || minuti < 59 || secondi < 59 ) {
     newmillis = millis();
     if (( newmillis >= prossimo ) {
-      prossimo = oldmillis + SECONDO
-      if ( prossimo =< oldmillis ) {
+      next = prossimo + SECONDO;
+      if ( next =< prossimo ) {
         prossimo = SECONDO;
+        //oldmillis = 0;
+      } else {
+        prossimo = next;
       }
-      oldmillis = newmillis;
       secondi++;
       if (secondi == 60) {
         secondi = 0 ;

@@ -38,6 +38,8 @@
 #include <LiquidCrystal.h>
 #define SECONDO 1010 // durata di un secondo in millisecondi
 
+//#define DEBUG
+
 // initialize the library by associating any needed LCD interface pin
 // with the arduino pin number it is connected to
 const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
@@ -51,6 +53,10 @@ unsigned char ore = 0;
 unsigned long giorni = 0;
 
 void setup() {
+#ifdef DEBUG
+  Serial.begin(115200);
+#endif
+
   // set up the LCD's number of columns and rows:
   lcd.begin(16, 2);
   // Print a message to the LCD.
@@ -74,6 +80,9 @@ void loop() {
       next = prossimo + SECONDO;
       if ( next <= prossimo ) {
         prossimo = SECONDO;
+        while ( newmillis > 500) {
+          newmillis = millis(); 
+        }
         //oldmillis = 0;
       } else {
         prossimo = next;
@@ -121,6 +130,17 @@ void loop() {
       //    }
       //    lcd.print(secondi);
       indenta(secondi, 2);
+
+#ifdef DEBUG
+      Serial.print("d:");
+      Serial.print(giorni);
+      Serial.print(" h:");
+      Serial.print(ore);
+      Serial.print(" m:");
+      Serial.print(minuti);
+      Serial.print(" s:");
+      Serial.println(secondi);
+#endif
     }
   }
 }

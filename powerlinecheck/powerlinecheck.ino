@@ -70,9 +70,9 @@ void loop() {
   //if ( millis() % 1000 == 0 ) {
   if ( giorni < 9999999 || ore < 23 || minuti < 59 || secondi < 59 ) {
     newmillis = millis();
-    if (( newmillis >= prossimo ) {
+    if ( newmillis >= prossimo ) {
       next = prossimo + SECONDO;
-      if ( next =< prossimo ) {
+      if ( next <= prossimo ) {
         prossimo = SECONDO;
         //oldmillis = 0;
       } else {

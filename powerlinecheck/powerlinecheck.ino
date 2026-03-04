@@ -80,7 +80,7 @@ void loop() {
       next = prossimo + SECONDO;
       if ( next <= prossimo ) {
         prossimo = SECONDO;
-        while ( newmillis > 500) {
+        while ( newmillis > 50) {
           newmillis = millis(); 
         }
         //oldmillis = 0;
